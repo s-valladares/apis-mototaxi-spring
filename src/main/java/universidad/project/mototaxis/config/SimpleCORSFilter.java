@@ -1,24 +1,19 @@
-package com.solucionesti.controlventas.ventasback.config;
-
-import java.io.IOException;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package universidad.project.mototaxis.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 
 @Component
 public class SimpleCORSFilter implements Filter {
 
-    private final Logger log = LoggerFactory.getLogger(SimpleCORSFilter.class);
+    private final Logger log = LoggerFactory.getLogger(universidad.project.mototaxis.config.SimpleCORSFilter.class);
 
     public SimpleCORSFilter() {
         log.info("SimpleCORSFilter init");

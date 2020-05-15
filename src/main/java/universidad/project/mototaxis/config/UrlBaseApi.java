@@ -1,4 +1,4 @@
-package com.solucionesti.controlventas.ventasback.config;
+package universidad.project.mototaxis.config;
 
 public class UrlBaseApi {
 
