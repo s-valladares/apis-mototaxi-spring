@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/mototaxis")
-                .setAllowedOrigins("*")
+                .setAllowedOrigins("http://localhost:8100")
                 .withSockJS();
     }
 
