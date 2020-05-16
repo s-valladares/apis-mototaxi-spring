@@ -22,12 +22,9 @@ public class Piloto extends AuditModel implements Serializable {
     @JsonIgnoreProperties({ "updatedAt", "hibernateLazyInitializer", "handler" })
     private Usuario usuario;
 
-    private boolean duenio;
-
-    private String color;
-    private String modelo;
-    private String placa;
     private boolean licencia;
+
+    private boolean activo;
 
     public Long getId() {
         return id;
@@ -45,37 +42,6 @@ public class Piloto extends AuditModel implements Serializable {
         this.usuario = usuario;
     }
 
-    public boolean isDuenio() {
-        return duenio;
-    }
-
-    public void setDuenio(boolean duenio) {
-        this.duenio = duenio;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
 
     public boolean isLicencia() {
         return licencia;
@@ -83,6 +49,14 @@ public class Piloto extends AuditModel implements Serializable {
 
     public void setLicencia(boolean licencia) {
         this.licencia = licencia;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     private static final long serialVersionUID = 1L;
