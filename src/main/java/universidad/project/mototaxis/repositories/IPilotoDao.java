@@ -1,4 +1,7 @@
 package universidad.project.mototaxis.repositories;
 
-public interface IPilotoDao {
+import org.springframework.data.jpa.repository.JpaRepository;
+import universidad.project.mototaxis.domains.Piloto;
+
+public interface IPilotoDao extends JpaRepository<Piloto, Long> {
 }
