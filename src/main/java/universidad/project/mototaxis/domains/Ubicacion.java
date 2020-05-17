@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ubicaciones")
-public class Ubicacion extends AuditModel implements Serializable {
+public class Ubicacion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

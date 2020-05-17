@@ -51,6 +51,8 @@ public class Piloto extends AuditModel implements Serializable {
         this.licencia = licencia;
     }
 
+
+
     public boolean isActivo() {
         return activo;
     }

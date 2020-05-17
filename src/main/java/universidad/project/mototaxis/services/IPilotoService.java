@@ -9,4 +9,5 @@ public interface IPilotoService {
     Piloto getId(Long id);
     Piloto create(Piloto p);
     void delete(Long id);
+    Piloto verPilotoPorIdUsuario(Long id);
 }

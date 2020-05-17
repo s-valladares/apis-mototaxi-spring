@@ -4,41 +4,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import universidad.project.mototaxis.config.UrlBaseApi;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import universidad.project.mototaxis.domains.Piloto;
 import universidad.project.mototaxis.services.IPilotoService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@RestController
-@RequestMapping(UrlBaseApi.URL_API)
-public class PilotoController {
-    private final String entidad = "/pilotos";
+public class WSPilotoController {
 
     @Autowired
     private IPilotoService objService;
+
     Map<String, Object> response = new HashMap<>();
 
-    @GetMapping(entidad)
-    public ResponseEntity<?> index() {
-        List<Piloto> objNew = null;
+    @MessageMapping("/ubicacion")
+    @SendTo("/ubicaciones/piloto")
+    public ResponseEntity<?> verPilotoPorIdUsuario(Long id) {
+
+        Piloto obj = null;
 
         try {
-            objNew = objService.getAll();
+            obj = objService.getId(id);
         } catch (DataAccessException ex) {
-            response.put("mensaje", "Error al obtener de la base de datos");
+            response.put("mensaje", "Error al consultar base de datos");
             response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        response.put("size", objNew.size());
-        response.put("rows", objNew);
+        if (obj == null) {
+            response.put("mensaje", "piloto".toUpperCase() + " ID: ".concat(id.toString().concat(" No existe en la base de datos")));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
 
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        return new ResponseEntity<Piloto>(obj, HttpStatus.OK);
     }
 }
