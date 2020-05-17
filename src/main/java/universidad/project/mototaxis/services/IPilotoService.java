@@ -10,4 +10,5 @@ public interface IPilotoService {
     Piloto create(Piloto p);
     void delete(Long id);
     Piloto verPilotoPorIdUsuario(Long id);
+    List<Piloto> verPilotoDisponible();
 }

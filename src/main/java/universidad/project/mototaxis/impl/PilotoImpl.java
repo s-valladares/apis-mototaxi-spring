@@ -39,4 +39,9 @@ public class PilotoImpl implements IPilotoService {
     public Piloto verPilotoPorIdUsuario(Long id) {
         return  objDao.verPilotoPorIdUsuario(id);
     }
+
+    @Override
+    public List<Piloto> verPilotoDisponible() {
+        return  objDao.verPilotoDisponible();
+    }
 }

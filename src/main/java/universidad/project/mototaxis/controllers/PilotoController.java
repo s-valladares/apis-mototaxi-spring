@@ -29,7 +29,7 @@ public class PilotoController {
         List<Piloto> objNew = null;
 
         try {
-            objNew = objService.getAll();
+            objNew = objService.verPilotoDisponible();
         } catch (DataAccessException ex) {
             response.put("mensaje", "Error al obtener de la base de datos");
             response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
