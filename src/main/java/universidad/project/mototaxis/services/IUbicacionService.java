@@ -9,4 +9,5 @@ public interface IUbicacionService {
     Ubicacion getId(Long id);
     Ubicacion create(Ubicacion p);
     void delete(Long id);
+    Ubicacion createUbicacionAndUpdatePiloto(Ubicacion obj);
 }

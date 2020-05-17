@@ -16,4 +16,5 @@ public interface IPilotoDao extends JpaRepository<Piloto, Long> {
     // Mostrar pilotos disponibles
     @Query("SELECT p FROM Piloto p WHERE p.activo = true")
     List<Piloto> verPilotoDisponible();
+
 }

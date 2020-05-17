@@ -1,20 +1,29 @@
 package universidad.project.mototaxis.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import universidad.project.mototaxis.domains.Piloto;
 import universidad.project.mototaxis.domains.Ubicacion;
 import universidad.project.mototaxis.repositories.IUbicacionDao;
+import universidad.project.mototaxis.services.IPilotoService;
 import universidad.project.mototaxis.services.IUbicacionService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UbicacionImpl implements IUbicacionService {
 
     @Autowired
     private IUbicacionDao objDao;
+
+    @Autowired
+    private IPilotoService pilotoService;
 
     @Override
     @Transactional(readOnly = true)
@@ -30,6 +39,25 @@ public class UbicacionImpl implements IUbicacionService {
     @Override
     public Ubicacion create(Ubicacion obj) {
         return objDao.save(obj);
+    }
+
+    @Override
+    @Transactional
+    public Ubicacion createUbicacionAndUpdatePiloto(Ubicacion obj) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        Ubicacion ubicacion = objDao.save(obj);
+        Piloto pActual = pilotoService.verPilotoPorIdUsuario(obj.getUsuario().getId());
+
+        try {
+            pActual.setActivo(true);
+            pilotoService.create(pActual);
+        } catch (DataAccessException ex) {
+            return null;
+        }
+
+        return ubicacion;
     }
 
     @Override

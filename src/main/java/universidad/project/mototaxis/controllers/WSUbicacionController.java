@@ -42,7 +42,7 @@ public class WSUbicacionController {
 
         try {
             //System.out.print(x.getApellidos());
-            objNew = objService.create(x);
+            objNew = objService.createUbicacionAndUpdatePiloto(x);
 
         } catch (DataAccessException ex) {
             response.put("mensaje", "Error al insertar en la base de datos");
@@ -54,7 +54,7 @@ public class WSUbicacionController {
         response.put("RES", objNew);
 
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-        
+
     }
 
 
