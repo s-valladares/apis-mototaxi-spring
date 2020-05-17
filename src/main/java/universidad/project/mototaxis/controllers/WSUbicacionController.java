@@ -33,8 +33,8 @@ public class WSUbicacionController {
 
     Map<String, Object> response = new HashMap<>();
 
-    @MessageMapping("/piloto")
-    @SendTo("/ubicaciones/piloto")
+    @MessageMapping("/piloto-ubicacion")
+    @SendTo("/ubicaciones/piloto-ubicacion")
     public ResponseEntity<?> createUbicacion(Ubicacion x) {
 
         Ubicacion objNew = null;
