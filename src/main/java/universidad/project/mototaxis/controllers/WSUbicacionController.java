@@ -33,13 +33,28 @@ public class WSUbicacionController {
 
     Map<String, Object> response = new HashMap<>();
 
-    @MessageMapping("/ubicacion")
-    @SendTo("/ubicaciones/ubicacion")
-    public Ubicacion createUbicacion(Ubicacion x) {
-        log.info("create: ");
-        return objService.create(x);
+    @MessageMapping("/piloto")
+    @SendTo("/ubicaciones/piloto")
+    public ResponseEntity<?> createUbicacion(Ubicacion x) {
 
+        Ubicacion objNew = null;
+        Map<String, Object> response = new HashMap<>();
 
+        try {
+            //System.out.print(x.getApellidos());
+            objNew = objService.create(x);
+
+        } catch (DataAccessException ex) {
+            response.put("mensaje", "Error al insertar en la base de datos");
+            response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "OK");
+        response.put("RES", objNew);
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        
     }
 
 
