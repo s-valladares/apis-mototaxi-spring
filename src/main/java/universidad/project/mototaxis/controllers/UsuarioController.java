@@ -30,6 +30,7 @@ public class UsuarioController {
     private IUsuarioService objService;
     Map<String, Object> response = new HashMap<>();
 
+
     @PostMapping(entidad)
     public ResponseEntity<?> create(@Valid @RequestBody Usuario x, BindingResult result) {
 
