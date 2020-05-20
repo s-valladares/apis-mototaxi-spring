@@ -44,6 +44,27 @@ public class PilotoController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
+    @GetMapping(entidad + "/usuario/{id}" )
+    public ResponseEntity<?> verPilotoIdUsuario(@PathVariable Long id) {
+        response.clear();
+        Piloto obj = null;
+
+        try {
+            obj = objService.verPilotoPorIdUsuario(id);
+        } catch (DataAccessException ex) {
+            response.put("mensaje", "Error al consultar base de datos");
+            response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        if (obj == null) {
+            response.put("mensaje", entidad.toUpperCase() + " ID: ".concat(id.toString().concat(" No existe en la base de datos")));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Piloto>(obj, HttpStatus.OK);
+    }
+
     @PostMapping(entidad)
     public ResponseEntity<?> create(@Valid @RequestBody Piloto x, BindingResult result) {
 
