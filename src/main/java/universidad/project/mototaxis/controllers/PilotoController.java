@@ -58,7 +58,8 @@ public class PilotoController {
         }
 
         if (obj == null) {
-            response.put("mensaje", entidad.toUpperCase() + " ID: ".concat(id.toString().concat(" No existe en la base de datos")));
+            response.put("error", true);
+            response.put("mensaje", "NO hay PILOTO para el ID: " + id);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
 
