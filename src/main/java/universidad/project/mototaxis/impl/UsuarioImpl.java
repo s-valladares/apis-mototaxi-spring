@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import universidad.project.mototaxis.domains.Usuario;
 import universidad.project.mototaxis.repositories.IUsuarioDao;
 import universidad.project.mototaxis.services.IUsuarioService;
-
 import java.util.List;
 
 @Service
@@ -33,4 +32,6 @@ public class UsuarioImpl implements IUsuarioService {
     public void delete(Long id) {
         objDao.deleteById(id);
     }
+
+
 }
