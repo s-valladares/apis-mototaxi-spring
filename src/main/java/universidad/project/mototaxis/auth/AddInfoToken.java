@@ -34,6 +34,7 @@ public class AddInfoToken implements TokenEnhancer {
         info.put("email", usuario.getEmail());
         info.put("persona_nombre", persona.getNombres());
         info.put("persona_apellidos", persona.getApellidos());
+        info.put("persona_telefono", persona.getTelefono());
 
         try {
 

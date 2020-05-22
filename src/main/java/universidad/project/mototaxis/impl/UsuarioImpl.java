@@ -15,7 +15,7 @@ public class UsuarioImpl implements IUsuarioService {
     @Autowired
     IUsuarioDao objDao;
 
-    @Transactional
+
 
     @Override
     public List<Usuario> getAll() {
