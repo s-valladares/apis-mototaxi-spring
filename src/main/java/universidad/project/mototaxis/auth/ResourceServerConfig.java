@@ -26,6 +26,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/mototaxi/api/personas").permitAll()
                 .antMatchers(HttpMethod.POST, "/mototaxi/api/usuarios").permitAll()
                 .antMatchers(HttpMethod.POST, "/mototaxi/api/pilotos").permitAll()
+                .antMatchers("/mototaxis/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors().configurationSource(corsConfigurationSource())
                 .and().csrf().disable()
