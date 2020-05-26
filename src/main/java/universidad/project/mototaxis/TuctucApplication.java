@@ -21,7 +21,7 @@ public class TuctucApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String pass = "1234";
+        String pass = "12345";
         for (int i = 0; i < 4; i++){
             String passBCrypt = passwordEncoder.encode(pass);
             System.out.println(passBCrypt);

@@ -46,6 +46,9 @@ public class UsuarioController {
         }
 
         try {
+
+
+
             objNew = objService.create(x);
 
         } catch (DataAccessException ex) {

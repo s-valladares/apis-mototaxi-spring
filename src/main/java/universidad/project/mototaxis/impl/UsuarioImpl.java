@@ -1,6 +1,7 @@
 package universidad.project.mototaxis.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import universidad.project.mototaxis.domains.Persona;
@@ -15,6 +16,8 @@ public class UsuarioImpl implements IUsuarioService {
     @Autowired
     IUsuarioDao objDao;
 
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
 
     @Override
@@ -29,6 +32,9 @@ public class UsuarioImpl implements IUsuarioService {
 
     @Override
     public Usuario create(Usuario p) {
+
+        p.setPassword(passwordEncoder.encode(p.getPassword()));
+
         return objDao.save(p);
     }
 
