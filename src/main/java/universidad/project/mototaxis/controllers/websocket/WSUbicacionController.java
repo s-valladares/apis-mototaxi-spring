@@ -24,17 +24,16 @@ public class WSUbicacionController {
     private  Logger log = LoggerFactory.getLogger(WSUbicacionController.class);
 
     Map<String, Object> response = new HashMap<>();
+    Ubicacion objNew = null;
 
-    @MessageMapping("/piloto-ubicacion")
-    @SendTo("/ubicaciones/piloto-ubicacion")
-    public ResponseEntity<?> createUbicacion(Ubicacion x) {
+    @MessageMapping("/piloto-on")
+    @SendTo("/ubicaciones/piloto-on")
+    public ResponseEntity<?> createUbicacionOn(Ubicacion ub) {
 
-        Ubicacion objNew = null;
-        Map<String, Object> response = new HashMap<>();
+        response.clear();
 
         try {
-            //System.out.print(x.getApellidos());
-            objNew = objService.createUbicacionAndUpdatePiloto(x);
+            objNew = objService.createUbicacionAndUpdatePiloto(ub, true);
 
         } catch (DataAccessException ex) {
             response.put("mensaje", "Error al insertar en la base de datos");
@@ -48,6 +47,30 @@ public class WSUbicacionController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
     }
+
+    @MessageMapping("/piloto-off")
+    @SendTo("/ubicaciones/piloto-off")
+    public ResponseEntity<?> deleteUbicacionOff(Ubicacion ub) {
+        System.out.println("Este es el id:" + ub.getId());
+        response.clear();
+
+        try {
+            objNew = objService.createUbicacionAndUpdatePiloto(ub, false);
+
+        } catch (DataAccessException ex) {
+            response.put("mensaje", "Error al eliminar de la base de datos");
+            response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "OK");
+        response.put("RES", objNew);
+
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+
+    }
+
+
 
 
 

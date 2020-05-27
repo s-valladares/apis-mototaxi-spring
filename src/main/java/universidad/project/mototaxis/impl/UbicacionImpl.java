@@ -43,15 +43,22 @@ public class UbicacionImpl implements IUbicacionService {
 
     @Override
     @Transactional
-    public Ubicacion createUbicacionAndUpdatePiloto(Ubicacion obj) {
+    public Ubicacion createUbicacionAndUpdatePiloto(Ubicacion obj, boolean activo) {
 
         Map<String, Object> response = new HashMap<>();
+        Ubicacion ubicacion = null;
+        if (activo) {
+            ubicacion = objDao.save(obj);
+        } else {
 
-        Ubicacion ubicacion = objDao.save(obj);
+            objDao.deleteById(obj.getId());
+        }
+
+
         Piloto pActual = pilotoService.verPilotoPorIdUsuario(obj.getUsuario().getId());
 
         try {
-            pActual.setActivo(true);
+            pActual.setActivo(activo);
             pilotoService.create(pActual);
         } catch (DataAccessException ex) {
             return null;
