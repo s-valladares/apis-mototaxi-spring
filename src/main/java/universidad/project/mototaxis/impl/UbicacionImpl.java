@@ -61,7 +61,7 @@ public class UbicacionImpl implements IUbicacionService {
             pActual.setActivo(activo);
             pilotoService.create(pActual);
         } catch (DataAccessException ex) {
-            return null;
+            System.out.println("NO se pudo actualizar piloto activo");
         }
 
         return ubicacion;
