@@ -44,7 +44,7 @@ public class WSUbicacionController {
         response.put("mensaje", "OK");
         response.put("RES", objNew);
 
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 
     }
 
@@ -64,9 +64,9 @@ public class WSUbicacionController {
         }
 
         response.put("mensaje", "OK");
-        response.put("RES", objNew);
+        response.put("RES", ub);
 
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 
     }
 
