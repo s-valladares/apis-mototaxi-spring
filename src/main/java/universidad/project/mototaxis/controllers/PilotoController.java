@@ -60,7 +60,8 @@ public class PilotoController {
         if (obj == null) {
             response.put("error", true);
             response.put("mensaje", "NO hay PILOTO para el ID: " + id);
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            response.put("RES", obj);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.ACCEPTED);
         }
 
         return new ResponseEntity<Piloto>(obj, HttpStatus.OK);
