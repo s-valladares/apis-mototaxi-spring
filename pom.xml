@@ -11,7 +11,6 @@
     <groupId>universidad.project.mototaxis</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
     <name>ApisTuctuc</name>
     <description>Apis para app mototaxis</description>
 
@@ -20,6 +19,8 @@
     </properties>
 
     <dependencies>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
