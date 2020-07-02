@@ -26,6 +26,9 @@ public class Piloto extends AuditModel implements Serializable {
 
     private boolean activo;
 
+    private Long lat;
+    private Long lng;
+
     public Long getId() {
         return id;
     }
@@ -42,7 +45,6 @@ public class Piloto extends AuditModel implements Serializable {
         this.usuario = usuario;
     }
 
-
     public boolean isLicencia() {
         return licencia;
     }
@@ -52,13 +54,28 @@ public class Piloto extends AuditModel implements Serializable {
     }
 
 
-
     public boolean isActivo() {
         return activo;
     }
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public Long getLat() {
+        return lat;
+    }
+
+    public void setLat(Long lat) {
+        this.lat = lat;
+    }
+
+    public Long getLng() {
+        return lng;
+    }
+
+    public void setLng(Long lng) {
+        this.lng = lng;
     }
 
     private static final long serialVersionUID = 1L;

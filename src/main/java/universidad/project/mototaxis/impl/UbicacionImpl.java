@@ -46,18 +46,26 @@ public class UbicacionImpl implements IUbicacionService {
     public Ubicacion createUbicacionAndUpdatePiloto(Ubicacion obj, boolean activo) {
 
         Ubicacion ubicacion = null;
+        Piloto pActual = pilotoService.verPilotoPorIdUsuario(obj.getUsuario().getId());
+
         if (activo) {
             ubicacion = objDao.save(obj);
+            pActual.setLat(ubicacion.getLatitud());
+            pActual.setLng(ubicacion.getLongitud());
         } else {
             // System.out.println("Id a eliminar: " + obj.getId());
             // objDao.deleteById(obj.getId());
         }
 
-        Piloto pActual = pilotoService.verPilotoPorIdUsuario(obj.getUsuario().getId());
+
 
         try {
             System.out.println("Actualizado: " + obj.getUsuario().getId());
+            System.out.println("Lat: " + obj.getLatitud());
+            System.out.println("Lng: " + obj.getLongitud());
+
             pActual.setActivo(activo);
+
             pilotoService.create(pActual);
         } catch (DataAccessException ex) {
             System.out.println("NO se pudo actualizar piloto activo");
